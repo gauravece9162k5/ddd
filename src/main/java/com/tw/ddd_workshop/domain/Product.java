@@ -1,13 +1,16 @@
 package com.tw.ddd_workshop.domain;
 
+import java.util.Currency;
 import java.util.Objects;
 
 public class Product {
 
     private String name;
+    private Price price;
 
-    public Product(String name) {
+    public Product(String name, Price price) {
         this.name = name;
+        this.price = price;
     }
 
     public String getName() {

@@ -11,7 +11,7 @@ import java.util.UUID;
 public class Cart {
     private UUID id = UUID.randomUUID();
     private List<Item> items = new ArrayList<>();
-
+    private List<Item> deletedItemsList = new ArrayList<>();
     public void add(Item item) {
         items.add(item);
         new ItemAddedToCartEvent(item);
@@ -20,6 +20,7 @@ public class Cart {
     public void remove(Item item) {
         if (items.remove(item)) {
             new ItemRemovedFromCartEvent(item);
+            deletedItemsList.add(item);
         }
     }
 
@@ -28,6 +29,7 @@ public class Cart {
         for (Item item:items) {
             if(item.getProduct().equals(product)){
                 toBeRemovedItems.add(item);
+                deletedItemsList.add(item);
             }
         }
         toBeRemovedItems.forEach(item->new ItemRemovedFromCartEvent(item));

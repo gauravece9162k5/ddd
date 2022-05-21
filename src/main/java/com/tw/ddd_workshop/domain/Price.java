@@ -22,7 +22,7 @@ public class Price {
         return currency;
     }
 
-    public Price ReduceToPercent(float percent) {
-        return new Price(percent*value,currency);
+    public Price ReduceByPercent(float percent) {
+        return new Price(((value*(100 - percent))/100),currency);
     }
 }

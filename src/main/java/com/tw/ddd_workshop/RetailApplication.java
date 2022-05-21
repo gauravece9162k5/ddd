@@ -1,11 +1,14 @@
 package com.tw.ddd_workshop;
 
 import com.tw.ddd_workshop.domain.*;
+import com.tw.ddd_workshop.domain.bank.Account;
+import com.tw.ddd_workshop.domain.bank.Address;
+import com.tw.ddd_workshop.domain.bank.Customer;
 import com.tw.ddd_workshop.domainservice.CompetitorPricingStrategy;
 
 import java.util.Currency;
 
-public class Application {
+public class RetailApplication {
 
     public static void main(String[] args) {
 

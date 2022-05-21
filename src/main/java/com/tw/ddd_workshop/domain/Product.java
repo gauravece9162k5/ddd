@@ -1,20 +1,25 @@
 package com.tw.ddd_workshop.domain;
 
-import java.util.Currency;
 import java.util.Objects;
 
 public class Product {
 
     private String name;
     private Price price;
+    private double weightInGram;
+
+    public double getWeightInGram() {
+        return weightInGram;
+    }
 
     public Price getPrice() {
         return price;
     }
 
-    public Product(String name, Price price) {
+    public Product(String name, Price price, double weight) {
         this.name = name;
         this.price = price;
+        this.weightInGram = weight;
     }
 
     public String getName() {

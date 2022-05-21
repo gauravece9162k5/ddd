@@ -24,8 +24,7 @@ public class Application {
         System.out.println(cart2.equals(cart2)); //should return true
 
         //Problem 9
-        Order newOrder = cart1.checkout();
+        cart1.checkout();
         System.out.println(cart1.isEmpty());// return true
-        System.out.println(newOrder.getNumberOfproducts()); //return 4
     }
 }

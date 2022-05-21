@@ -2,6 +2,7 @@ package com.tw.ddd_workshop.domain;
 
 import com.tw.ddd_workshop.event.ItemAddedToCartEvent;
 import com.tw.ddd_workshop.event.ItemRemovedFromCartEvent;
+import com.tw.ddd_workshop.event.util.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,12 @@ public class Cart {
 
     public void add(Item item) {
         items.add(item);
-        new ItemAddedToCartEvent(item);
+        EventBus.raise(new ItemAddedToCartEvent(item));
     }
 
     public void remove(Item item) {
         if (items.remove(item)) {
-            new ItemRemovedFromCartEvent(item);
+            EventBus.raise(new ItemRemovedFromCartEvent(item));
             deletedItemsList.add(item);
         }
     }
@@ -37,20 +38,15 @@ public class Cart {
         items.removeAll(toBeRemovedItems);
     }
 
-    public Order checkout() {
+    public List<Product> checkout() {
         List<Product> products = new ArrayList<>();
         for (Item item : items) {
             for (int i = 1; i <= item.getQuantity(); i++) {
                 products.add(item.getProduct());
             }
         }
-        List<Item> toBeRemovedItems = new ArrayList<>();
-        toBeRemovedItems.addAll(items);
-        toBeRemovedItems.forEach(item -> remove(item));
-        toBeRemovedItems.clear();
-
-
-        return new Order(products);
+        items.clear();
+        return products;
     }
 
     public boolean isEmpty() {

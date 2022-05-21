@@ -15,7 +15,7 @@ public class CompetitorPricingStrategy {
 
     public static Price getDiscountPrice(String productName, Double amount) {
         if(competitorProducts.containsKey(productName)) {
-            return competitorProducts.get(productName).ReduceByPercent(10);
+            return competitorProducts.get(productName).ReduceToPercent(90);
         }
         return new Price(amount);
     }
